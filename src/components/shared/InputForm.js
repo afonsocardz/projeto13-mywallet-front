@@ -22,5 +22,12 @@ export default function InputForm({ text, setValue, type}) {
 }
 
 const Input = styled.input`
-
+    width: 326px;
+    height: 58px;
+    border-radius: 5px;
+    border: none;
+    background-color: white;
+    font-size: 20px;
+    padding: 18px 15px;
+    margin-bottom: 13px;
 `;

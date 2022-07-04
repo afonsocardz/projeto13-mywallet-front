@@ -1,4 +1,5 @@
 import axios from "axios";
+import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { API } from "../../API";
 import { useLoadingContext } from "../../contexts/LoadingContext";
@@ -24,10 +25,11 @@ export default function Form({ body, endpoint, children, auth = false }) {
 
             if (endpoint === "users/login") {
                 const obj = {
+                    name: data.user.name,
                     token: {
                         headers: {
                             "Authorization": `Bearer ${data.token}`,
-                            "user": body.email,
+                            "user": data.user.email,
                         }
                     }
                 }
@@ -42,8 +44,13 @@ export default function Form({ body, endpoint, children, auth = false }) {
     }
 
     return (
-        <form onSubmit={(e) => sendForm(e)}>
+        <StyledForm onSubmit={(e) => sendForm(e)}>
             {children}
-        </form>
+        </StyledForm>
     );
 }
+
+const StyledForm = styled.form`
+    display: flex;
+    flex-direction: column;
+`;
