@@ -22,8 +22,11 @@ export default function Form({ body, endpoint, children, auth = false, setType }
         promise.then(res => {
             const { data } = res;
             setIsLoading(false);
-            if (endpoint.contains("wallet")){
+            if (endpoint.includes("wallet")){
                 setType(false);
+            }
+            if(endpoint.includes("signup")){
+                navigate("/")
             }
             if (endpoint === "users/login") {
                 const obj = {

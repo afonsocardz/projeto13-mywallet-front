@@ -10,7 +10,7 @@ export default function Frame ({children}){
 
 const Background = styled.div`
     background-color: purple;
-    padding: 25px 24px 16px 24px;
+    padding: 25px 24px 8px 24px;
     display: flex;
     height: 100%;
     justify-content: center;

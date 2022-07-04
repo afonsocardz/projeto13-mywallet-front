@@ -55,7 +55,7 @@ export default function Wallet() {
 
     useEffect(() => {
         if (!type) {
-            setText(`Olá, ${name}`)
+            setText(`Olá, ${name.replace(/ .*/, "")}`)
         } else {
             type === 'income' ? setText("Nova entrada") : setText("Nova saída");
         }

@@ -30,27 +30,48 @@ export default function TransactionList() {
             console.log(err);
             navigate("/");
         });
-    },[navigate, user.token]);
-
-    
+    }, [navigate, user.token]);
 
     return (
         <div>
-            <ListContainer>
-                <StyledTransactions>
-                    {transactions && transactions.map(({ amount, date, description }, index) =>
-                        <TransactionItem key={index} amount={amount} date={date} description={description} />)}
-                </StyledTransactions>
-                <TotalContainer>
-                    <span >Saldo</span>
-                    <StyledAmount amount={total}>{total}</StyledAmount>
-                </TotalContainer>
-            </ListContainer>
+            {transactions.length > 0 ?
+                <ListContainer>
+                    <StyledTransactions>
+                        {transactions.map(({ amount, date, description }, index) =>
+                            <TransactionItem key={index} amount={amount} date={date} description={description} />)}
+                    </StyledTransactions>
+                    <TotalContainer>
+                        <span >Saldo</span>
+                        <StyledAmount amount={total}>{total}</StyledAmount>
+                    </TotalContainer>
+                </ListContainer> :
+                <EmptyList>
+                    <NoData>Não há registros de
+                        entrada ou saída</NoData>
+                </EmptyList>
+            }
         </div>
     );
 }
 
+const EmptyList = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: 446px;
+    width: 326px;
+    border-radius: 5px;
+    padding: 23px 12px 12px 12px ;
+    margin-bottom: 13px;
+`;
 
+
+const NoData = styled.span`
+    color: #868686;
+    text-align: center;
+`;
 
 const StyledAmount = styled.span`
     width: 100%;

@@ -17,7 +17,7 @@ const Title = styled.span`
 `;
 
 const StyledHeader = styled.header`
-    margin-bottom: 22px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;

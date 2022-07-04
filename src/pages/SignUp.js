@@ -36,19 +36,17 @@ export default function SignUp() {
             <Container>
                 <Logo>MyWallet</Logo>
                 <Form body={body} endpoint={"users/signup"}>
-                    <InputForm text={"Digite seu nome completo"} setValue={setName} />
-                    <InputForm text={"Digite seu e-mail"} setValue={setEmail} />
-                    <InputForm text={"Digite sua senha"} type={"password"} setValue={setPassword} />
-                    <InputForm text={"Confirme a sua senha"} type={"password"} setValue={setRePassword} />
-                    <ButtonForm isDisable={isDisable} text={"Registrar"} />
+                    <InputForm text={"Nome"} setValue={setName} />
+                    <InputForm text={"Email"} setValue={setEmail} />
+                    <InputForm text={"Senha"} type={"password"} setValue={setPassword} />
+                    <InputForm text={"Confirme a senha"} type={"password"} setValue={setRePassword} />
+                    <ButtonForm isDisable={isDisable} text={"Cadastrar"} />
                 </Form>
                 <Span onClick={() => navigate("/")}>Já tem uma conta? Entre agora!</Span>
             </Container>
         </LoandingContextProvider>
     );
 }
-
-
 
 const Span = styled.span`
     color: white;

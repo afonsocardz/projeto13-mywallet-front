@@ -24,7 +24,7 @@ export default function Login() {
                 <Logo>MyWallet</Logo>
                 <Form body={body} endpoint={"users/login"}>
                     <InputForm text={"Digite seu e-mail"} setValue={setEmail} />
-                    <InputForm text={"Digite sua senha"} setValue={setPassword} />
+                    <InputForm type={"password"} text={"Digite sua senha"} setValue={setPassword} />
                     <ButtonForm text={"Entrar"} />
                 </Form>
                 <Span onClick={() => navigate("/signup")}>Primeira vez? Cadastre-se!</Span>

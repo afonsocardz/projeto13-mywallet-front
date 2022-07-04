@@ -1,4 +1,5 @@
 import axios from "axios";
+import styled from 'styled-components';
 import {IonIcon} from "@ionic/react";
 import {logOutOutline } from "ionicons/icons";
 import { useNavigate } from "react-router-dom";
@@ -18,8 +19,13 @@ export default function LogoutButton() {
         })
     }
     return (
-        <div style={{color: "white"}}>
+        <Logout>
             <IonIcon size={"large"} icon={logOutOutline} onClick={() => logout()}>Logout</IonIcon>
-        </div>
+        </Logout>
     );
 }
+
+const Logout = styled.div`
+    color: white;
+    cursor: pointer;
+`;
