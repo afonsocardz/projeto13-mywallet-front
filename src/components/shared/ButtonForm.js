@@ -3,7 +3,7 @@ import { ThreeDots } from "react-loader-spinner";
 import { useLoadingContext } from "../../contexts/LoadingContext";
 
 
-export default function ButtonForm({ text, isDisable }) {
+export default function ButtonForm({ text, isDisable, setIsHome }) {
     const { isLoading } = useLoadingContext();
     return (
         <Button disabled={isDisable}>{isLoading ? <ThreeDots color={"white"} height={"35"} /> : text}</Button>
@@ -20,4 +20,7 @@ const Button = styled.button`
     border-radius: 5px;
     border: none;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;

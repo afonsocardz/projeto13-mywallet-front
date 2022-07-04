@@ -1,4 +1,6 @@
 import axios from "axios";
+import {IonIcon} from "@ionic/react";
+import {logOutOutline } from "ionicons/icons";
 import { useNavigate } from "react-router-dom";
 import { API } from "../API";
 import { useUserContext } from "../contexts/UserContext";
@@ -16,8 +18,8 @@ export default function LogoutButton() {
         })
     }
     return (
-        <div>
-            <button onClick={() => logout()}>Logout</button>
+        <div style={{color: "white"}}>
+            <IonIcon size={"large"} icon={logOutOutline} onClick={() => logout()}>Logout</IonIcon>
         </div>
     );
 }

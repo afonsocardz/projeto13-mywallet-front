@@ -5,6 +5,7 @@ import InputForm from "../components/shared/InputForm";
 import ButtonForm from "../components/shared/ButtonForm"
 import LoandingContextProvider from "../contexts/LoadingContext";
 import { useNavigate } from "react-router-dom";
+import { Container } from "../components/style/ColumnContainer";
 
 
 export default function SignUp() {
@@ -47,11 +48,7 @@ export default function SignUp() {
     );
 }
 
-const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-`;
+
 
 const Span = styled.span`
     color: white;

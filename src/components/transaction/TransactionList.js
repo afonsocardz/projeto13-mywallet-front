@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import styled from "styled-components";
 import { API } from "../../API";
 import TransactionItem from "./TransactionItem";
 import { useUserContext } from "../../contexts/UserContext";
@@ -35,16 +36,38 @@ export default function TransactionList() {
 
     return (
         <div>
-            <div>
-                <div>
+            <ListContainer>
+                <StyledTransactions>
                     {transactions && transactions.map(({ amount, date, description }, index) =>
                         <TransactionItem index={index} amount={amount} date={date} description={description} />)}
-                </div>
-                <div>
+                </StyledTransactions>
+                <TotalContainer>
                     <span>Saldo</span>
                     <span>R${total}</span>
-                </div>
-            </div>
+                </TotalContainer>
+            </ListContainer>
         </div>
     );
 }
+
+const StyledTransactions = styled.div`
+    height: 100%;
+    overflow: hidden;
+`;
+
+const ListContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    height: 446px;
+    width: 326px;
+    border-radius: 5px;
+    padding: 23px 12px 12px 12px ;
+    margin-bottom: 13px;
+`;
+
+const TotalContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+`;
