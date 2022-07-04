@@ -5,8 +5,8 @@ import { useLoadingContext } from "../../contexts/LoadingContext";
 import { useUserContext } from "../../contexts/UserContext";
 
 
-export default function Form({ body, endpoint, children }) {
-    const { setUser } = useUserContext();
+export default function Form({ body, endpoint, children, auth = false }) {
+    const { user, setUser } = useUserContext();
     const { setIsLoading } = useLoadingContext();
     const navigate = useNavigate();
 
@@ -14,7 +14,9 @@ export default function Form({ body, endpoint, children }) {
         e.preventDefault();
         setIsLoading(true);
 
-        const promise = axios.post(API + endpoint, body);
+        const promise = auth ?
+            axios.post(API + endpoint, body, user.token) :
+            axios.post(API + endpoint, body);
 
         promise.then(res => {
             const { data } = res;

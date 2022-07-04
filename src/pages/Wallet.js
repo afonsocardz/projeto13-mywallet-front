@@ -6,40 +6,51 @@ import Form from "../components/shared/Form";
 import InputForm from "../components/shared/InputForm";
 import TransactionList from "../components/transaction/TransactionList";
 import TransactionOption from "../components/transaction/TransactionOption";
+import LoandingContextProvider from "../contexts/LoadingContext";
 
+function CreateTransaction({ type, setIsHome }) {
+    const [description, setDescription] = useState("");
+    const [amount, setAmount] = useState("");
 
-function OutcomeForm() {
+    const body = {
+        type,
+        description,
+        amount
+    }
+
     return (
-        <Form>
-            <InputForm />
-            <InputForm />
-            <ButtonForm />
-        </Form>
+        <LoandingContextProvider>
+            <Form endpoint={"users/wallet"} body={body} auth={true}>
+                <InputForm text={"Descrição"} setValue={setDescription} />
+                <InputForm text={"Digite o valor"} setValue={setAmount} />
+                <ButtonForm  text={type === "income" ? "Adicionar Entrada" : "Adicionar Saída"} />
+            </Form>
+        </LoandingContextProvider>
     );
 }
 
-function IncomeForm() {
+function WalletHome({ setIsHome, setType }) {
     return (
-        <Form>
-            <InputForm />
-            <InputForm />
-            <ButtonForm />
-        </Form>
+        <>
+            <TransactionList />
+            <div>
+                <TransactionOption setIsHome={setIsHome} setType={setType} type={"income"} />
+                <TransactionOption setIsHome={setIsHome} setType={setType} type={"outcome"} />
+            </div>
+        </>
     );
 }
 
 
 export default function Wallet() {
     const [isHome, setIsHome] = useState(true);
+    const [type, setType] = useState(false);
+
     return (
-        <>
-            <Header isHome={isHome}/>
-            <TransactionList/>
-            <div>
-                <TransactionOption/>
-                <TransactionOption/>
-            </div>
-        </>
+        <div>
+            <Header isHome={isHome} />
+            {isHome ? <WalletHome setType={setType} setIsHome={setIsHome} /> : <CreateTransaction type={type} setIsHome={setIsHome} />}
+        </div>
     );
 
 }
