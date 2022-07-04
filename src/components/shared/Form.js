@@ -6,9 +6,9 @@ import { useLoadingContext } from "../../contexts/LoadingContext";
 import { useUserContext } from "../../contexts/UserContext";
 
 
-export default function Form({ body, endpoint, children, auth = false }) {
+export default function Form({ body, endpoint, children, auth = false, setType }) {
     const { user, setUser } = useUserContext();
-    const { setIsLoading } = useLoadingContext();
+    const { setIsLoading} = useLoadingContext();
     const navigate = useNavigate();
 
     function sendForm(e) {
@@ -22,7 +22,9 @@ export default function Form({ body, endpoint, children, auth = false }) {
         promise.then(res => {
             const { data } = res;
             setIsLoading(false);
-
+            if (endpoint.contains("wallet")){
+                setType(false);
+            }
             if (endpoint === "users/login") {
                 const obj = {
                     name: data.user.name,

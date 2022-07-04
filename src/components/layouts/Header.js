@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import LogoutButton from "../LogoutButton";
 
-export default function Header({ text, isHome }) {
+export default function Header({ text, type }) {
     return (
         <StyledHeader>
             <Title>{text}</Title>
-            {isHome && <LogoutButton />}
+            {!type && <LogoutButton />}
         </StyledHeader>
     );
 }

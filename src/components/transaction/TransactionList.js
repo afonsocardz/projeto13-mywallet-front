@@ -30,7 +30,7 @@ export default function TransactionList() {
             console.log(err);
             navigate("/");
         });
-    },[]);
+    },[navigate, user.token]);
 
     
 
@@ -39,16 +39,26 @@ export default function TransactionList() {
             <ListContainer>
                 <StyledTransactions>
                     {transactions && transactions.map(({ amount, date, description }, index) =>
-                        <TransactionItem index={index} amount={amount} date={date} description={description} />)}
+                        <TransactionItem key={index} amount={amount} date={date} description={description} />)}
                 </StyledTransactions>
                 <TotalContainer>
-                    <span>Saldo</span>
-                    <span>R${total}</span>
+                    <span >Saldo</span>
+                    <StyledAmount amount={total}>{total}</StyledAmount>
                 </TotalContainer>
             </ListContainer>
         </div>
     );
 }
+
+
+
+const StyledAmount = styled.span`
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    color: ${({ amount }) => amount > 0 ? "#03AC00" : "#C70000"};
+    font-weight: 400;
+`;
 
 const StyledTransactions = styled.div`
     height: 100%;
@@ -70,4 +80,5 @@ const TotalContainer = styled.div`
     display: flex;
     justify-content: space-between;
     text-transform: uppercase;
+    font-weight: 700;
 `;

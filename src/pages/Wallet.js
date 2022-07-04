@@ -9,7 +9,7 @@ import TransactionOption from "../components/transaction/TransactionOption";
 import LoandingContextProvider from "../contexts/LoadingContext";
 import { useUserContext } from "../contexts/UserContext";
 
-function CreateTransaction({ type, setIsHome }) {
+function CreateTransaction({ type, setType }) {
     const [description, setDescription] = useState("");
     const [amount, setAmount] = useState("");
 
@@ -21,10 +21,10 @@ function CreateTransaction({ type, setIsHome }) {
 
     return (
         <LoandingContextProvider>
-            <Form endpoint={"users/wallet"} body={body} auth={true}>
+            <Form endpoint={"users/wallet"} body={body} auth={true} setType={setType}>
                 <InputForm text={"Descrição"} setValue={setDescription} />
                 <InputForm text={"Digite o valor"} setValue={setAmount} />
-                <ButtonForm setIsHome={setIsHome} text={type === "income" ? "Nova entrada" : "Nova saída"} />
+                <ButtonForm  text={type === "income" ? "Nova entrada" : "Nova saída"} />
             </Form>
         </LoandingContextProvider>
     );
@@ -49,23 +49,22 @@ const OptionsContainer = styled.div`
 
 
 export default function Wallet() {
-    const [isHome, setIsHome] = useState(true);
     const [type, setType] = useState(false);
     const [text, setText] = useState(false);
     const { name } = useUserContext().user;
 
     useEffect(() => {
-        if (isHome) {
+        if (!type) {
             setText(`Olá, ${name}`)
         } else {
             type === 'income' ? setText("Nova entrada") : setText("Nova saída");
         }
-    }, [type])
+    }, [type, name])
 
     return (
         <div>
-            <Header text={text} isHome={isHome} />
-            {isHome ? <WalletHome setType={setType} setIsHome={setIsHome} /> : <CreateTransaction type={type} setIsHome={setIsHome} />}
+            <Header text={text} type={type}  />
+            {!type ? <WalletHome setType={setType}/> : <CreateTransaction type={type} setType={setType} />}
         </div>
     );
 

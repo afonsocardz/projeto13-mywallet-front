@@ -2,10 +2,9 @@ import styled from "styled-components";
 import {IonIcon} from "@ionic/react";
 import {addCircleOutline, removeCircleOutline } from "ionicons/icons";
 
-export default function TransactionOption({ type, setType, setIsHome }) {
+export default function TransactionOption({ type, setType }) {
     function action (){
         setType(type);
-        setIsHome(false);
     }
 
     const icon = type === "income" ? addCircleOutline : removeCircleOutline;

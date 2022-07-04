@@ -29,8 +29,8 @@ const StyledDescription = styled.span`
 `;
 
 const StyledAmount = styled.span`
-    width: 100%;
     display: flex;
     justify-content: end;
     color: ${({ amount }) => amount > 0 ? "#03AC00" : "#C70000"};
+    margin-left: auto;
 `;
